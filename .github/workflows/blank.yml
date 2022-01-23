@@ -11,7 +11,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/homebrew/ubuntu16.04:master
+      image: ubuntu:16.04
 
     steps:
       - name: Install Homebrew
