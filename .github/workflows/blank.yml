@@ -19,8 +19,8 @@ jobs:
           "debian/eol:wheezy",
           "debian/eol:jessie",
           "debian/eol:stretch",
-          "debian/buster",
-          "debian/bullseye"]
+          "debian:buster",
+          "debian:bullseye"]
 
     container:
       image: ${{ matrix.container }}
