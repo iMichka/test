@@ -12,7 +12,21 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        container: ["ubuntu:16.04", "ubuntu:18.04", "ubuntu:20.04", "debian/eol:wheezy", "debian/eol:jessie", "debian/eol:stretch", "debian/buster", "debian/bullseye"]
+        container: [
+          "ubuntu:16.04",
+          "ubuntu:18.04",
+          "ubuntu:20.04",
+          "debian/eol:wheezy",
+          "debian/eol:jessie",
+          "debian/eol:stretch",
+          "debian/buster",
+          "debian/bullseye",
+          "centos7",
+          "centos8",
+          "fedora:30",
+          "fedora:31",
+          "fedora:32",
+          "fedora:33"]
 
     container:
       image: ${{ matrix.container }}
