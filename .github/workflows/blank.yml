@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        container: ["ubuntu:16.04", "ubuntu:18.04", "ubuntu:20.04"]
+        container: ["ubuntu:16.04", "ubuntu:18.04", "ubuntu:20.04", "debian/eol:wheezy", "debian/eol:jessie", "debian/eol:stretch", "debian/buster", "debian/bullseye"]
 
     container:
       image: ${{ matrix.container }}
@@ -30,6 +30,7 @@ jobs:
           test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
           test -r ~/.bash_profile && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >>~/.bash_profile
           echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >>~/.profile
+          source ~/.profile
 
       - name: Update Homebrew
         run: brew update
