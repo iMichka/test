@@ -1,9 +1,5 @@
 name: brew doctor
-on:
-  push:
-    branches:
-      - master
-  pull_request:
+on: [push]
 
 jobs:
   tests:
