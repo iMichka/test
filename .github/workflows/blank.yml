@@ -20,13 +20,7 @@ jobs:
           "debian/eol:jessie",
           "debian/eol:stretch",
           "debian/buster",
-          "debian/bullseye",
-          "centos7",
-          "centos8",
-          "fedora:30",
-          "fedora:31",
-          "fedora:32",
-          "fedora:33"]
+          "debian/bullseye"]
 
     container:
       image: ${{ matrix.container }}
