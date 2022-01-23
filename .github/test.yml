@@ -1,0 +1,7 @@
+name: brew doctor
+on:
+  pull_request
+jobs:
+  tests:
+    steps:
+      - run: echo "1"
