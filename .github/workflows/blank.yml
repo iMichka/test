@@ -18,7 +18,7 @@ jobs:
           "ubuntu:20.04",
           "debian/eol:wheezy",
           "debian/eol:jessie",
-          "debian/eol:stretch",
+          "debian:stretch",
           "debian:buster",
           "debian:bullseye"]
 
