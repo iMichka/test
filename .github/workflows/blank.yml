@@ -19,3 +19,12 @@ jobs:
 
       - name: Install Homebrew
         run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+      - name: Update Homebrew
+        run: brew update
+
+      - name: Install hello
+        run: brew install hello
+
+      - name: Test hello
+        run: brew test hello
