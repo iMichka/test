@@ -12,10 +12,15 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        include:
-         - container: "debian/eol:wheezy"
-           old-git: "true"
-         - container: "ubuntu:16.04"
+        container: [
+          "ubuntu:16.04",
+          "ubuntu:18.04",
+          "ubuntu:20.04",
+          "debian/eol:wheezy",
+          "debian/eol:jessie",
+          "debian:stretch",
+          "debian:buster",
+          "debian:bullseye"]
 
     container:
       image: ${{ matrix.container }}
@@ -25,7 +30,7 @@ jobs:
         run: apt-get update && apt-get install -y build-essential curl git
 
       - name: Install tar if necessary
-        if: ${{ matrix.old-git=='true' }}
+        if: matrix.os == 'debian/eol:wheezy'
         run: |
           curl -sL http://ftp.gnu.org/gnu/tar/tar-1.32.tar.gz | tar xz \
           && cd /tar-1.32 \
@@ -35,7 +40,7 @@ jobs:
           && ln -fs /usr/local/bin/tar /usr/bin/tar
 
       - name: Install git if necessary
-        if: ${{ matrix.old-git=='true' }}
+        if: matrix.os == 'debian/eol:wheezy'
         run: |
           curl -sL http://mirrors.edge.kernel.org/pub/software/scm/git/git-2.28.0.tar.gz | tar xz \
           && cd /git-2.28.0 \
