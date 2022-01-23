@@ -14,5 +14,8 @@ jobs:
       image: ubuntu:16.04
 
     steps:
+      - name: Install Pre-requisites
+        run: apt-get update && apt-get install -y build-essential
+
       - name: Install Homebrew
         run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
