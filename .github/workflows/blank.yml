@@ -65,7 +65,7 @@ jobs:
 
       - name: Add brew to path          
         run: |
-          echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/linuxbrew/.profile
+          echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /github/home/.profile
           eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
       - name: Update Homebrew
