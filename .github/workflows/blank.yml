@@ -15,7 +15,8 @@ jobs:
         container: [
           "ubuntu:16.04",
           "ubuntu:18.04",
-          "ubuntu:20.04"]
+          "ubuntu:20.04",
+          "debian/eol:wheezy"]
 
     container:
       image: ${{ matrix.container }}
@@ -28,21 +29,21 @@ jobs:
         if: matrix.container == 'debian/eol:wheezy'
         run: |
           curl -sL http://ftp.gnu.org/gnu/tar/tar-1.32.tar.gz | tar xz
-          cd /tar-1.32
+          cd tar-1.32
           FORCE_UNSAFE_CONFIGURE=1 ./configure --prefix=/usr/local
           make install
-          rm -rf /tar-1.32
+          cd .. && rm -rf tar-1.32
           ln -fs /usr/local/bin/tar /usr/bin/tar
 
       - name: Install git if necessary
         if: matrix.container == 'debian/eol:wheezy'
         run: |
           curl -sL http://mirrors.edge.kernel.org/pub/software/scm/git/git-2.28.0.tar.gz | tar xz
-          cd /git-2.28.0
+          cd git-2.28.0
           make configure
           ./configure --prefix=/usr/local
           make install NO_TCLTK=1
-          rm -rf /git-2.28.0
+          cd .. && rm -rf git-2.28.0
           ln -fs /usr/local/bin/git /usr/bin/git
 
       - name: Install Homebrew
@@ -54,7 +55,7 @@ jobs:
           test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
           test -r ~/.bash_profile && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >>~/.bash_profile
           echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >>~/.profile
-          source ~/.profile
+          . ~/.profile
 
       - name: Update Homebrew
         run: brew update
