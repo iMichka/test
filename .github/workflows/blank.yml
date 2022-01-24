@@ -15,12 +15,7 @@ jobs:
         container: [
           "ubuntu:16.04",
           "ubuntu:18.04",
-          "ubuntu:20.04",
-          "debian/eol:wheezy",
-          "debian/eol:jessie",
-          "debian:stretch",
-          "debian:buster",
-          "debian:bullseye"]
+          "ubuntu:20.04"]
 
     container:
       image: ${{ matrix.container }}
