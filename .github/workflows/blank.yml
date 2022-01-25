@@ -63,16 +63,11 @@ jobs:
       - name: Install Homebrew
         run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-      - name: Add brew to path          
-        run: |
-          echo "/home/linuxbrew/.linuxbrew/bin"" >> $GITHUB_PATH
-          echo "/home/linuxbrew/.linuxbrew/sbin"" >> $GITHUB_PATH
-
       - name: Update Homebrew
-        run: brew update
+        run: /home/linuxbrew/.linuxbrew/bin/brew update
 
       - name: Install hello
-        run: brew install hello
+        run: /home/linuxbrew/.linuxbrew/bin/brew install hello
 
       - name: Test hello
-        run: brew test hello
+        run: /home/linuxbrew/.linuxbrew/bin/brew test hello
