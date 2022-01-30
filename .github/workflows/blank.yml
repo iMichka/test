@@ -54,7 +54,7 @@ jobs:
           apt-get install -y libssl-dev
           curl -sL http://fresh-center.net/linux/www/curl-7.81.0.tar.bz2  | tar xjv
           cd curl-7.81.0
-          ./configure --with-openssl --prefix=/usr/local
+          ./configure --with-openssl --disable-shared --prefix=/usr/local
           make
           make install
           cd .. && rm -rf curl-7.81.0
