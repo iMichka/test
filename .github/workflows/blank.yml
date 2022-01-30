@@ -34,7 +34,7 @@ jobs:
           FORCE_UNSAFE_CONFIGURE=1 ./configure --prefix=/usr/local
           make install
           cd .. && rm -rf tar-1.32
-          ln -fs /usr/local/bin/tar /usr/bin/tar
+          echo "/usr/local/bin/tar" > $GITHUB_PATH
 
       - name: Install git if necessary
         if: matrix.container == 'debian/eol:wheezy'
@@ -46,7 +46,7 @@ jobs:
           ./configure --prefix=/usr/local
           make install NO_TCLTK=1
           cd .. && rm -rf git-2.28.0
-          ln -fs /usr/local/bin/git /usr/bin/git
+          echo "/usr/local/bin/git" >> $GITHUB_PATH
 
       - name: Install curl if necessary
         if: matrix.container == 'debian/eol:wheezy'
@@ -58,7 +58,7 @@ jobs:
           make
           make install
           cd .. && rm -rf curl-7.81.0
-          ln -fs /usr/local/bin/curl /usr/bin/curl
+          echo "/usr/local/bin/curl" >> $GITHUB_PATH
 
       - name: Install Homebrew
         run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
