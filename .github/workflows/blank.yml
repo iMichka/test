@@ -21,4 +21,4 @@ jobs:
         run: docker build -t ${{ matrix.container }} .
         working-directory: ${{ matrix.container }}
       - name: Run Docker image and install hello
-        run: docker run --rm ${{ matrix.container }} "brew install hello && brew test hello"
+        run: docker run --rm ${{ matrix.container }} "su normaluser && brew install hello && brew test hello"
