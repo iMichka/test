@@ -38,3 +38,6 @@ useradd -m -s /bin/bash normaluser
 chown -R normaluser /home/linuxbrew/
 
 su normaluser -c 'echo "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" >> /home/normaluser/.bashrc'
+
+su normaluser -c 'brew install hello'
+su normaluser -c 'brew test hello'
