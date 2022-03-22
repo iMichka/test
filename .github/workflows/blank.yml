@@ -20,3 +20,5 @@ jobs:
       - name: Build Docker image
         run: docker build -t ${{ matrix.container }} .
         working-directory: ${{ matrix.container }}
+      - name: Run Docker image
+        run: docker run --rm ${{ matrix.container }}
