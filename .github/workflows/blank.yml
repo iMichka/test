@@ -17,5 +17,6 @@ jobs:
 
     steps:
       - name: Build Docker image
+        uses: actions/checkout@v2
         run: docker build -t ${{ matrix.container }} .
-        working-directory: ./${{ matrix.container }}
+        working-directory: ${{ matrix.container }}
