@@ -13,61 +13,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        container: [
-          "ubuntu:16.04",
-          "ubuntu:18.04",
-          "ubuntu:20.04",
-          "debian/eol:wheezy"]
-
-    container:
-      image: ${{ matrix.container }}
+        container: ["ubuntu16.04", "centos7"]
 
     steps:
-      - name: Install Pre-requisites
-        run: apt-get update && apt-get install -y build-essential curl git
-
-      - name: Install tar if necessary
-        if: matrix.container == 'debian/eol:wheezy'
-        run: |
-          curl -sL http://ftp.gnu.org/gnu/tar/tar-1.32.tar.gz | tar xz
-          cd tar-1.32
-          FORCE_UNSAFE_CONFIGURE=1 ./configure --prefix=/usr/local
-          make install
-          cd .. && rm -rf tar-1.32
-          echo "/usr/local/bin/tar" > $GITHUB_PATH
-
-      - name: Install git if necessary
-        if: matrix.container == 'debian/eol:wheezy'
-        run: |
-          apt-get install -y autoconf zlib1g-dev gettext
-          curl -sL http://mirrors.edge.kernel.org/pub/software/scm/git/git-2.28.0.tar.gz | tar xz
-          cd git-2.28.0
-          make configure
-          ./configure --prefix=/usr/local
-          make install NO_TCLTK=1
-          cd .. && rm -rf git-2.28.0
-          echo "/usr/local/bin/git" >> $GITHUB_PATH
-
-      - name: Install curl if necessary
-        if: matrix.container == 'debian/eol:wheezy'
-        run: |
-          apt-get install -y libssl-dev
-          curl -sL http://fresh-center.net/linux/www/curl-7.81.0.tar.bz2  | tar xjv
-          cd curl-7.81.0
-          ./configure --with-openssl --disable-shared --prefix=/usr/local
-          make
-          make install
-          cd .. && rm -rf curl-7.81.0
-          echo "/usr/local/bin/curl" >> $GITHUB_PATH
-
-      - name: Install Homebrew
-        run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-      - name: Update Homebrew
-        run: /home/linuxbrew/.linuxbrew/bin/brew update
-
-      - name: Install hello
-        run: /home/linuxbrew/.linuxbrew/bin/brew install hello
-
-      - name: Test hello
-        run: /home/linuxbrew/.linuxbrew/bin/brew test hello
+      - name: Build Docker image
+        run: docker build -t ${{ matrix.container }} .
+        working-directory: ${{ matrix.container }}
