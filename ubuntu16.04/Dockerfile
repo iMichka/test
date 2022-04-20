@@ -5,9 +5,6 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
    && apt-get install -y build-essential procps curl file git
 
-ADD test.sh test.sh
-RUN chmod +x test.sh
-
 RUN useradd -m -s /bin/bash linuxbrew
 RUN echo 'linuxbrew ALL=(ALL) NOPASSWD:ALL' >>/etc/sudoers
 RUN su - linuxbrew -c 'mkdir ~/.linuxbrew'
