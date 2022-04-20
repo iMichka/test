@@ -20,3 +20,5 @@ jobs:
       - name: Build Docker image
         run: docker build -t ${{ matrix.container }} .
         working-directory: ${{ matrix.container }}
+      - name: Run tests
+        run: docker run --user linuxbrew --rm -w /home/linuxbrew -v $(pwd)/test.sh:/home/linuxbrew/test.sh ${{ matrix.container }} "chmod +x test.sh && ./test.sh"
