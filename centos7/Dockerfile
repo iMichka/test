@@ -47,3 +47,6 @@ RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/instal
 RUN chown -R linuxbrew /home/linuxbrew/.linuxbrew
 
 RUN echo "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" >> /home/linuxbrew/.bashrc
+RUN echo "HOMEBREW_GIT_PATH=/usr/local/bin/git" >> /home/linuxbrew/.bashrc
+RUN echo "HOMEBREW_CURL_PATH=/usr/local/bin/curl" >> /home/linuxbrew/.bashrc
+RUN echo "HOMEBREW_FORCE_BREWED_CA_CERTIFICATES=1" >> /home/linuxbrew/.bashrc
