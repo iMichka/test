@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        container: ["ubuntu16.04", "centos7"]
+        container: ["ubuntu16.04"]
 
     steps:
       - uses: actions/checkout@v2
