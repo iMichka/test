@@ -8,4 +8,12 @@ RUN apt-get update \
 ADD test.sh test.sh
 RUN chmod +x test.sh
 
-RUN ["/bin/bash", "test.sh"]
+RUN useradd -m -s /bin/bash linuxbrew
+RUN echo 'linuxbrew ALL=(ALL) NOPASSWD:ALL' >>/etc/sudoers
+RUN su - linuxbrew -c 'mkdir ~/.linuxbrew'
+
+RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+RUN chown -R linuxbrew /home/linuxbrew/.linuxbrew
+
+RUN echo "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" >> /home/linuxbrew/.bashrc
