@@ -18,7 +18,8 @@ jobs:
           "ubuntu18.04",
           "ubuntu20.04",
           "ubuntu22.04",
-          "centos7"]
+          "centos7",
+          "centos8"]
 
     steps:
       - uses: actions/checkout@v2
