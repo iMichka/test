@@ -6,9 +6,9 @@ RUN apt-get update \
    && apt-get install -y build-essential procps curl file git
 
 # For git:
-RUN apt-get install -y zlib-devel
+RUN apt-get install -y libz-dev
 # For curl:
-RUN apt-get install -y openssl-devel
+RUN apt-get install -y libcurl4-openssl-dev
 
 RUN curl -sL http://ftp.gnu.org/gnu/tar/tar-1.32.tar.gz | tar xz \
     && cd /tar-1.32 \
