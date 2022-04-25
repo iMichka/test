@@ -1,4 +1,4 @@
-FROM debian:wheezy
+FROM debian/eol:wheezy
 ARG DEBIAN_FRONTEND=noninteractive
 
 # hadolint ignore=DL3008
