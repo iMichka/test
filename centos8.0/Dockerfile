@@ -1,4 +1,4 @@
-FROM centos:7
+FROM centos:8.0
 
 # hadolint ignore=DL3008
 RUN yum -y update \
