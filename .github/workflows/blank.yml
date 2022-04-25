@@ -19,7 +19,8 @@ jobs:
           "ubuntu20.04",
           "ubuntu22.04",
           "centos7",
-          "centos8",]
+          "centos8",
+          "debian7",]
 
     steps:
       - uses: actions/checkout@v2
