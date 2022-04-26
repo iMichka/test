@@ -3,12 +3,12 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # hadolint ignore=DL3008
 RUN apt-get update \
-   && apt-get install -y build-essential procps curl file git
+   && apt-get install -y build-essential procps curl file
 
 # For git:
 RUN apt-get install -y libz-dev
 # For curl:
-RUN apt-get install -y libcurl4-openssl-dev
+RUN apt-get install -y libssl-dev autoconf gettext
 
 RUN curl -sL http://ftp.gnu.org/gnu/tar/tar-1.32.tar.gz | tar xz \
     && cd /tar-1.32 \
@@ -20,16 +20,19 @@ RUN curl -sL http://ftp.gnu.org/gnu/tar/tar-1.32.tar.gz | tar xz \
 RUN curl -sL http://fresh-center.net/linux/www/curl-7.82.0.tar.bz2 | tar xj \
     && cd /curl-7.82.0 \
     && make configure \
-    && ./configure --prefix=/usr/local --with-openssl \
+    && ./configure --prefix=/usr/local --with-openssl --disable-static \
     && make \
     && make install \
     && cd / \
     && rm -rf /curl-7.82.0
 
+# Fix curl: symbol lookup error: curl: undefined symbol: curl_mime_free
+RUN ldconfig
+
 RUN curl -sL http://mirrors.edge.kernel.org/pub/software/scm/git/git-2.28.0.tar.gz | tar xz \
     && cd /git-2.28.0 \
     && make configure \
-    && ./configure --prefix=/usr/local --with-curl=/usr/local \
+    && ./configure --prefix=/usr/local --with-curl=/usr/local/ \
     && make install NO_TCLTK=1 \
     && cd / \
     && rm -rf /git-2.28.0
