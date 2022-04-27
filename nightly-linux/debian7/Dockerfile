@@ -57,4 +57,4 @@ RUN echo "export HOMEBREW_FORCE_BREWED_CA_CERTIFICATES=1" >> /home/linuxbrew/.ba
 RUN echo "export HOMEBREW_DEVELOPER=1" >> /home/linuxbrew/.bashrc
 
 # glibc 2.23 does not get automatically installed but is necessary on debian 7
-RUN brew install glibc
+RUN /home/linuxbrew/.linuxbrew/bin/brew install glibc
