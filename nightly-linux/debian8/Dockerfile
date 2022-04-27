@@ -5,6 +5,11 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
    && apt-get install -y build-essential procps curl file
 
+# For git:
+RUN apt-get install -y libz-dev
+# For curl:
+RUN apt-get install -y libssl-dev autoconf gettext
+
 RUN curl -sL http://mirrors.edge.kernel.org/pub/software/scm/git/git-2.28.0.tar.gz | tar xz \
     && cd /git-2.28.0 \
     && make configure \

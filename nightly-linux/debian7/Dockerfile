@@ -17,7 +17,7 @@ RUN curl -sL http://ftp.gnu.org/gnu/tar/tar-1.32.tar.gz | tar xz \
     && cd / \
     && rm -rf /tar-1.32
 
-RUN curl -sL https://curl.se/download/curl-7.82.0.tar.bz2 | tar xj \
+RUN curl -sL --insecure https://curl.se/download/curl-7.82.0.tar.bz2 | tar xj \
     && cd /curl-7.82.0 \
     && make configure \
     && ./configure --prefix=/usr/local --with-openssl --disable-static \
