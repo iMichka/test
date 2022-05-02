@@ -55,8 +55,3 @@ RUN echo "export HOMEBREW_CURL_PATH=/usr/local/bin/curl" >> /home/linuxbrew/.bas
 RUN echo "export HOMEBREW_FORCE_BREWED_CA_CERTIFICATES=1" >> /home/linuxbrew/.bashrc
 # This is necessary so that HOMEBREW_GIT_PATH and HOMEBREW_CURL_PATH are picked up by brew:
 RUN echo "export HOMEBREW_DEVELOPER=1" >> /home/linuxbrew/.bashrc
-
-ENV HOMEBREW_DEVELOPER=1
-
-# glibc 2.23 does not get automatically installed but is necessary on debian 7
-RUN /home/linuxbrew/.linuxbrew/bin/brew install glibc
