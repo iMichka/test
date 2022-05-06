@@ -23,14 +23,6 @@ name: Linux Nightly Builds
 on:
   push:
     branches: [ main ]
-    paths:
-      - 'nightly-linux/**'
-  pull_request:
-    branches: [ main ]
-    paths:
-      - 'nightly-linux/**'
-  schedule:
-    - cron:  '0 0 * * *'
 
 jobs:
   build:
