@@ -49,4 +49,4 @@ jobs:
         run: docker build -t ${{ matrix.container }} .
         working-directory: nightly-linux/${{ matrix.container }}
       - name: Run tests
-        run: docker run --rm --login --user linuxbrew -w /home/linuxbrew -v $(pwd)/nightly-linux/test.sh:/home/linuxbrew/test.sh ${{ matrix.container }} /bin/bash -c ./test.sh
+        run: docker run --rm --user linuxbrew -w /home/linuxbrew -v $(pwd)/nightly-linux/test.sh:/home/linuxbrew/test.sh ${{ matrix.container }} "/bin/bash --login -c ./test.sh"
