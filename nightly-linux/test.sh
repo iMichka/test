@@ -1,7 +1,7 @@
 #!/bin/bash
+set -e
 
 export HOMEBREW_DEVELOPER=1
-brew remove --force $(brew list --formula)
 cd /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/homebrew/homebrew-core
 git remote add sjackman https://github.com/sjackman/homebrew-core
 git fetch sjackman
